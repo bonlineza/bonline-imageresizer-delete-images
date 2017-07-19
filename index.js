@@ -1,10 +1,6 @@
 const axios = require('axios');
 const secrets = require('./secrets.json');
 
-const dt = new Date();
-
-const currentMonth =  dt.getMonth();
-
 function requestImages(cbSuccess = success, cbError = error) {
 	return axios.get(`https://api.imageresizer.io/v1/search?key=${secrets.API_KEY}`, {
 		sort: 'created',
