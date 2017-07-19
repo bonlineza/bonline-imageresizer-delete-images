@@ -1,0 +1,22 @@
+{
+  "name": "imageresizer-io",
+  "version": "1.0.0",
+  "description": "A servicer to remove all your images on image-resizer-io",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bonlineza/bonline-imageresizer-delete-images.git"
+  },
+  "author": "B Online",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bonlineza/bonline-imageresizer-delete-images/issues"
+  },
+  "homepage": "https://github.com/bonlineza/bonline-imageresizer-delete-images#readme",
+  "dependencies": {
+    "axios": "^0.16.2"
+  }
+}
