@@ -10,11 +10,12 @@ function requestImages(cbSuccess = success, cbError = error) {
 }
 
 function requestRemoveImages(idArr, cbSuccess = success, cbError = error) {
-	if (idArr.length > 20) {
-		throw new Error('Too many images passed to requestRemoveImages');
-	}
-	console.log(`https://api.imageresizer.io/v1/images/${idArr.join(',')}/delete?key=${secrets.API_KEY}`)
-	return axios.get(`https://api.imageresizer.io/v1/images/${idArr.join(',')}/delete?key=${secrets.API_KEY}`)
+         return deleteImage(idArr.join(','), cbSuccess, cbError);
+}
+
+function deleteImage(image, cbSuccess, cbError) {
+        console.log(`https://api.imageresizer.io/v1/images/${image}/delete?key=${secrets.API_KEY}`)
+	return axios.get(`https://api.imageresizer.io/v1/images/${image}/delete?key=${secrets.API_KEY}`)
 		.then(res => cbSuccess(res.data))
 		.catch(err => cbError(err));
 }
