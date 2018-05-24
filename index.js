@@ -10,11 +10,14 @@ function requestImages(cbSuccess = success, cbError = error) {
 }
 
 function requestRemoveImages(idArr, cbSuccess = success, cbError = error) {
+	if (idArr.length < 5) {
+		return stopExec();
+	}
          return deleteImage(idArr.join(','), cbSuccess, cbError);
 }
 
 function deleteImage(image, cbSuccess, cbError) {
-        console.log(`https://api.imageresizer.io/v1/images/${image}/delete?key=${secrets.API_KEY}`)
+        // console.log(`https://api.imageresizer.io/v1/images/${image}/delete?key=${secrets.API_KEY}`)
 	return axios.get(`https://api.imageresizer.io/v1/images/${image}/delete?key=${secrets.API_KEY}`)
 		.then(res => cbSuccess(res.data))
 		.catch(err => cbError(err));
@@ -34,9 +37,13 @@ function recurseRemove(stuff) {
 	if (stuff) {
 		console.log(stuff);
 	}
-	console.log('running');
 	const requestCallback = (data) => requestRemoveImages(data.response.images.map(v => v.id), recurseRemove);
-	const test = (data) => console.log(data.response.images);
+	// const test = (data) => console.log(data.response.images);
 	requestImages(requestCallback);
+}
+
+function stopExec() {
+	process.exit();
+	return;
 }
 recurseRemove();
